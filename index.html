@@ -2,24 +2,26 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Style Vault</title>
-    <link rel="icon" href="img/logo-etiqueta-html.png" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link rel="stylesheet" href="index.css" />
+    <link rel="icon" href="img/logo-etiqueta-html.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
+
+    <!-- HERO / PROMO -->
     <section class="promo-banner">
         <nav class="promo-nav">
-            <div class="logo">Style Vault</div>
-            <ul>
-                <li><a href="#">INICIO</a></li>
-                <li><a href="#" class="active">TIENDA</a></li>
-                <li><a href="#">HOMBRE</a></li>
-                <li><a href="#">MUJER</a></li>
-                <li><a href="#">NIÑOS</a></li>
+            <div class="logo">Style <strong>Vault</strong></div>
+            <ul class="menu">
+                <li><a href="#"><i class="fa-solid fa-house"></i> INICIO</a></li>
+                <li><a href="#" class="active"><i class="fa-solid fa-store"></i> TIENDA</a></li>
+                <li><a href="#"><i class="fa-solid fa-male"></i> HOMBRE</a></li>
+                <li><a href="#"><i class="fa-solid fa-female"></i> MUJER</a></li>
+                <li><a href="#"><i class="fa-solid fa-child"></i> NIÑOS</a></li>
             </ul>
             <div class="nav-icons">
                 <i class="fas fa-search"></i>
@@ -30,17 +32,28 @@
 
         <div class="promo-feature">
             <div class="promo-text">
-                <h4>VISTETE CON ESTILO</h4>
+                <h4>VÍSTETE CON ESTILO</h4>
                 <p>70% de descuento <strong>con la primera compra</strong></p>
                 <button id="promo-btn">COMPRA AHORA</button>
             </div>
             <div class="promo-image">
-                <img src="img/remera.png" alt="Remera personalizada" />
+                <img src="img/remera.png" alt="Remera personalizada">
             </div>
         </div>
     </section>
 
-    <script src="index.js"></script>
+    <!-- BANNER DE COOKIES -->
+    <div class="cookie-banner" id="cookie-banner">
+        <p>
+            <i class="fa-solid fa-cookie-bite"></i> Usamos cookies para mejorar tu experiencia y analizar el uso del sitio.
+            <a href="/politica-de-cookies" target="_blank" rel="noopener noreferrer">Saber más</a>
+        </p>
+        <button id="accept-cookies">
+            <i class="fa-solid fa-check"></i> Aceptar
+        </button>
+    </div>
+
+    <script src="index.js" defer></script>
 </body>
 
 </html>
