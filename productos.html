@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moda Hombre</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== RESET ===== */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Verdana', Geneva, Tahoma, sans-serif;
+            background-color: #fff;
+            color: #111;
+            scroll-behavior: smooth;
+            /* scroll suave */
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        /* ===== SCROLLBAR ===== */
+        
+        .menu::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .menu::-webkit-scrollbar-track {
+            background: #e0e0e0;
+            border-radius: 10px;
+        }
+        
+        .menu::-webkit-scrollbar-thumb {
+            background-color: #00c853;
+            border-radius: 10px;
+        }
+        
+        .menu::-webkit-scrollbar-thumb:hover {
+            background-color: #00b44b;
+        }
+        /* ===== NAV ===== */
+        
+        nav {
+            width: 100%;
+            background: #00c853;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #fff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+        }
+        
+        nav h1 {
+            font-size: 1.5rem;
+        }
+        
+        nav button {
+            background: #fff;
+            color: #00c853;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        nav button:hover {
+            background: #e0e0e0;
+        }
+        /* ===== PRODUCTOS ===== */
+        
+        .products-section {
+            padding: 100px 5% 60px;
+            text-align: center;
+        }
+        
+        .products-section h2 {
+            margin-bottom: 30px;
+            color: #111;
+            font-size: 2rem;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+        
+        .product-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            padding: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            max-width: 200px;
+            margin: 0 auto;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-card img {
+            width: 100%;
+            max-height: 140px;
+            object-fit: contain;
+            border-radius: 6px;
+        }
+        
+        .product-card h3 {
+            font-size: 1rem;
+            margin: 10px 0 5px;
+        }
+        
+        .price {
+            font-size: 0.9rem;
+            color: #00c853;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .add-to-cart {
+            background: #00c853;
+            color: #fff;
+            border: none;
+            padding: 6px 10px;
+            font-size: 0.85rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .add-to-cart:hover {
+            background: #00e676;
+        }
+        /* ===== CARRITO ===== */
+        
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: flex-end;
+            z-index: 1000;
+        }
+        
+        .cart-overlay.active {
+            display: flex;
+        }
+        
+        .cart {
+            background: #fff;
+            width: 350px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .cart-overlay.active .cart {
+            transform: translateX(0);
+        }
+        
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: #00c853;
+            color: #fff;
+        }
+        
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+        }
+        
+        .cart-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .cart-item img {
+            width: 50px;
+            margin-right: 10px;
+        }
+        
+        .cart-footer {
+            padding: 15px;
+            border-top: 1px solid #ddd;
+        }
+        
+        #checkout-btn {
+            background: #00c853;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        #checkout-btn:hover {
+            background: #00e676;
+        }
+        
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 5px;
+        }
+        
+        .qty-btn {
+            background: #00c853;
+            color: #fff;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .qty-btn:hover {
+            background: #00e676;
+        }
+        
+        .thank-you-message {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #00c853;
+            color: #fff;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            font-size: 1rem;
+            z-index: 2000;
+            animation: fadeInOut 3s ease forwards;
+        }
+        
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            10% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+        }
+        /* ===== BOTÓN VOLVER AL MENÚ ===== */
+        
+        .back-menu {
+            margin-top: 20px;
+            display: inline-block;
+            background: #00c853;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .back-menu:hover {
+            background: #00e676;
+        }
+    </style>
+</head>
+
+<body id="top">
+    <!-- NAV -->
+    <nav>
+        <h1>Moda <strong>Hombre</strong></h1>
+        <button id="open-cart"><i class="fa-solid fa-shopping-cart"></i> Carrito</button>
+    </nav>
+
+    <!-- SECCIÓN PRODUCTOS -->
+    <section class="products-section">
+        <h2>Productos Destacados</h2>
+        <div class="product-grid">
+            <div class="product-card" data-name="Camisa Slim Fit" data-price="8900" data-img="img/camisa-slim.png">
+                <img src="img/image.png" alt="Camisa Slim Fit">
+                <h3>Camisa Slim Fit</h3>
+                <p class="price">$8.900</p>
+                <button class="add-to-cart"><i class="fa-solid fa-cart-plus"></i> Agregar</button>
+            </div>
+            <div class="product-card" data-name="Buzo Urbano" data-price="12500" data-img="img/buzo-urbano.png">
+                <img src="img/image.png" alt="Buzo Urbano">
+                <h3>Buzo Urbano</h3>
+                <p class="price">$12.500</p>
+                <button class="add-to-cart"><i class="fa-solid fa-cart-plus"></i> Agregar</button>
+            </div>
+            <div class="product-card" data-name="Pantalón Chino" data-price="10500" data-img="img/pantalon-chino.png">
+                <img src="img/image.png" alt="Pantalón Chino">
+                <h3>Pantalón Chino</h3>
+                <p class="price">$10.500</p>
+                <button class="add-to-cart"><i class="fa-solid fa-cart-plus"></i> Agregar</button>
+            </div>
+            <div class="product-card" data-name="Zapatillas Street" data-price="18500" data-img="img/zapatillas-street.png">
+                <img src="img/image.png" alt="Zapatillas Street">
+                <h3>Zapatillas Street</h3>
+                <p class="price">$18.500</p>
+                <button class="add-to-cart"><i class="fa-solid fa-cart-plus"></i> Agregar</button>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-menu">Volver al inicio</a>
+    </section>
+
+    <!-- CARRITO -->
+    <div class="cart-overlay" id="cart-overlay">
+        <div class="cart">
+            <div class="cart-header">
+                <h3><i class="fa-solid fa-shopping-cart"></i> Tu Carrito</h3>
+                <button id="close-cart"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="cart-items" id="cart-items"></div>
+            <div class="cart-footer">
+                <p>Total: <span id="cart-total">$0</span></p>
+                <button id="checkout-btn">Finalizar Compra</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const cartOverlay = document.getElementById('cart-overlay');
+        const closeCartBtn = document.getElementById('close-cart');
+        const openCartBtn = document.getElementById('open-cart');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartTotal = document.getElementById('cart-total');
+        let cart = [];
+
+        // Abrir carrito
+        openCartBtn.addEventListener('click', () => {
+            cartOverlay.classList.add('active');
+        });
+
+        // Cerrar carrito
+        closeCartBtn.addEventListener('click', () => {
+            cartOverlay.classList.remove('active');
+        });
+
+        // Agregar producto
+        document.querySelectorAll('.add-to-cart').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const card = btn.closest('.product-card');
+                const name = card.dataset.name;
+                const price = parseFloat(card.dataset.price);
+                const img = card.dataset.img;
+
+                const existing = cart.find(item => item.name === name);
+                if (existing) {
+                    existing.qty++;
+                } else {
+                    cart.push({
+                        name,
+                        price,
+                        img,
+                        qty: 1
+                    });
+                }
+
+                updateCart();
+                cartOverlay.classList.add('active');
+            });
+        });
+
+        // Actualizar carrito
+        function updateCart() {
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+            cart.forEach((item, index) => {
+                total += item.price * item.qty;
+                const div = document.createElement('div');
+                div.classList.add('cart-item');
+                div.innerHTML = `
+                    <img src="${item.img}" alt="${item.name}">
+                    <div>
+                        <h4>${item.name}</h4>
+                        <p>$${item.price.toLocaleString()}</p>
+                        <div class="qty-controls">
+                            <button class="qty-btn" onclick="changeQty(${index},-1)">-</button>
+                            <span>${item.qty}</span>
+                            <button class="qty-btn" onclick="changeQty(${index},1)">+</button>
+                        </div>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(div);
+            });
+            cartTotal.textContent = `$${total.toLocaleString()}`;
+        }
+
+        // Cambiar cantidad
+        function changeQty(index, delta) {
+            cart[index].qty += delta;
+            if (cart[index].qty <= 0) cart.splice(index, 1);
+            updateCart();
+        }
+
+        // Finalizar compra
+        document.getElementById('checkout-btn').addEventListener('click', () => {
+            if (cart.length === 0) return;
+            cart = [];
+            updateCart();
+            cartOverlay.classList.remove('active');
+            showThankYou();
+        });
+
+        // Mensaje de agradecimiento
+        function showThankYou() {
+            const msg = document.createElement('div');
+            msg.classList.add('thank-you-message');
+            msg.textContent = '¡Gracias por tu compra!';
+            document.body.appendChild(msg);
+
+            setTimeout(() => {
+                msg.remove();
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>
