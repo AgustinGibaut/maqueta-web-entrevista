@@ -2,72 +2,43 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Style Vault</title>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="index.css">
-    <!-- Para el icono de la pestaña (favicon) -->
     <link rel="icon" href="img/logo-etiqueta-html.png" />
-    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="index.css" />
 </head>
 
 <body>
-    <nav>
-        <h1>
-            <i class="fas fa-shopping-bag"></i> STYLE <strong>VAULT</strong>
-        </h1>
+    <section class="promo-banner">
+        <nav class="promo-nav">
+            <div class="logo">Style Vault</div>
+            <ul>
+                <li><a href="#">INICIO</a></li>
+                <li><a href="#" class="active">TIENDA</a></li>
+                <li><a href="#">HOMBRE</a></li>
+                <li><a href="#">MUJER</a></li>
+                <li><a href="#">NIÑOS</a></li>
+            </ul>
+            <div class="nav-icons">
+                <i class="fas fa-search"></i>
+                <i class="fas fa-user"></i>
+                <i class="fas fa-shopping-cart"><span class="cart-count">0</span></i>
+            </div>
+        </nav>
 
-
-        <!-- Menú centrado -->
-        <ul>
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#">Más Vendido</a></li>
-            <li><a href="#">Hombre</a></li>
-            <li><a href="#">Mujer</a></li>
-        </ul>
-
-
-        <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-tiktok"></i></a>
+        <div class="promo-feature">
+            <div class="promo-text">
+                <h4>VISTETE CON ESTILO</h4>
+                <p>70% de descuento <strong>con la primera compra</strong></p>
+                <button id="promo-btn">COMPRA AHORA</button>
+            </div>
+            <div class="promo-image">
+                <img src="img/remera.png" alt="Remera personalizada" />
+            </div>
         </div>
-    </nav>
-
-    <div class="modelos">
-    </div>
-    <div class="carousel-container">
-        <div class="vertical-text left">HOT SALE</div>
-
-        <div class="carousel-slide active">
-            <img src="img/modelov1.png" alt="Imagen 1">
-        </div>
-        <div class="carousel-slide">
-            <img src="img/modelov2.png" alt="Imagen 2">
-        </div>
-        <div class="carousel-slide">
-            <img src="img/modedlov3.png" alt="Imagen 3">
-        </div>
-
-        <div class="carousel-dots">
-            <span class="dot active" onclick="goToSlide(0)"></span>
-            <span class="dot" onclick="goToSlide(1)"></span>
-            <span class="dot" onclick="goToSlide(2)"></span>
-        </div>
-    </div>
-
-
-
-
-    </div>
-
-
-
-
-
+    </section>
 
     <script src="index.js"></script>
 </body>
