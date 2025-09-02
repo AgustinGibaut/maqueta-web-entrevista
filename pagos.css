@@ -1,0 +1,92 @@
+/* SECCIÓN DE MÉTODOS DE PAGO */
+
+.pagos-section {
+    padding: 80px 5%;
+    position: relative;
+    background: radial-gradient(circle at top left, #e0f7e9, #ffffff 70%);
+    overflow: hidden;
+    min-height: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    animation: fadeInSection 1s ease forwards;
+}
+
+.pagos-section h1 {
+    width: 100%;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 2rem;
+    color: #111;
+    margin-bottom: 40px;
+}
+
+.pagos-section h1 strong {
+    color: #00c853;
+}
+
+.pagos-section .pagos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    position: relative;
+}
+
+.pagos-section .pagos img {
+    max-width: 180px;
+    width: 100%;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    cursor: pointer;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    animation: float 6s ease-in-out infinite;
+}
+
+.pagos-section .pagos img:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+/* ANIMACIÓN FLOTANTE */
+
+@keyframes float {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+    .pagos-section {
+        padding: 60px 5%;
+    }
+    .pagos-section .pagos {
+        gap: 40px;
+    }
+    .pagos-section .pagos img {
+        max-width: 140px;
+    }
+}
+
+@media (max-width: 500px) {
+    .pagos-section h1 {
+        font-size: 1.5rem;
+    }
+    .pagos-section .pagos {
+        gap: 30px;
+    }
+    .pagos-section .pagos img {
+        max-width: 120px;
+    }
+}
