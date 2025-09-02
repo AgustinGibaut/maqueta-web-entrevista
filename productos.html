@@ -8,7 +8,6 @@
     <link rel="icon" href="img/logo-etiqueta-html.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="productos.css">
-
 </head>
 
 <body>
@@ -16,18 +15,15 @@
         <div class="logo">Style <strong>Vault</strong></div>
         <ul>
             <li><a href="index.html">Inicio</a></li>
-            <li><a href="#" class="active">Hombre</a></li>
             <li><a href="#">Mujer</a></li>
         </ul>
         <div class="nav-icons">
             <i class="fas fa-search"></i>
             <i class="fas fa-shopping-cart" id="cart-icon">
-            <span class="cart-count" id="cart-count">0</span>
-        </i>
+                <span class="cart-count" id="cart-count">0</span>
+            </i>
         </div>
     </nav>
-
-
 
     <section class="products-section" id="products">
         <div class="section-header">
@@ -40,30 +36,31 @@
                 <img src="img/remera-main.png" alt="Camisa Casual">
                 <h3>Camisa Casual</h3>
                 <p>Perfecta para un look relajado y moderno.</p>
-                <a href="#" class="btn add-cart">Agregar al Carrito</a>
+                <a href="#" class="btn add-to-cart">Agregar al Carrito</a>
             </div>
             <div class="product-card" data-name="Chaqueta Urbana" data-price="12000">
                 <img src="img/remera.png" alt="Chaqueta Urbana">
                 <h3>Chaqueta Urbana</h3>
                 <p>Ideal para días frescos y estilo contemporáneo.</p>
-                <a href="#" class="btn add-cart">Agregar al Carrito</a>
+                <a href="#" class="btn add-to-cart">Agregar al Carrito</a>
             </div>
             <div class="product-card" data-name="Zapatos Deportivos" data-price="9000">
                 <img src="img/remera.png" alt="Zapatos Deportivos">
                 <h3>Zapatos Deportivos</h3>
                 <p>Comodidad y estilo para tu día a día.</p>
-                <a href="#" class="btn add-cart">Agregar al Carrito</a>
+                <a href="#" class="btn add-to-cart">Agregar al Carrito</a>
             </div>
             <div class="product-card" data-name="Pantalón Casual" data-price="7000">
                 <img src="img/remera.png" alt="Pantalón Casual">
                 <h3>Pantalón Casual</h3>
                 <p>Versátil y cómodo para cualquier ocasión.</p>
-                <a href="#" class="btn add-cart">Agregar al Carrito</a>
+                <a href="#" class="btn add-to-cart">Agregar al Carrito</a>
             </div>
         </div>
     </section>
 
-    <div class="cart-overlay" id="cart">
+    <!-- Carrito -->
+    <div class="cart-overlay" id="cart-overlay">
         <div class="cart-header">
             <h3>Carrito</h3>
             <span class="cart-close" id="cart-close"><i class="fas fa-times"></i></span>
@@ -72,82 +69,11 @@
         <div class="cart-footer">
             <span>Total:</span>
             <span id="cart-total">$0</span>
+            <button id="checkout-btn" class="btn">Finalizar Compra</button>
         </div>
     </div>
 
-    <script>
-        const cartIcon = document.getElementById('cart-icon');
-        const cart = document.getElementById('cart');
-        const cartClose = document.getElementById('cart-close');
-        const cartItemsContainer = document.getElementById('cart-items');
-        const cartCount = document.getElementById('cart-count');
-        let cartData = [];
-
-        // Abrir/cerrar carrito
-        cartIcon.addEventListener('click', () => cart.classList.toggle('open'));
-        cartClose.addEventListener('click', () => cart.classList.remove('open'));
-
-        // Agregar al carrito
-        document.querySelectorAll('.add-cart').forEach(btn => {
-            btn.addEventListener('click', e => {
-                e.preventDefault();
-                const card = btn.closest('.product-card');
-                const img = card.querySelector('img').src; // Auto-detecta la imagen
-                const product = {
-                    name: card.dataset.name,
-                    price: parseFloat(card.dataset.price),
-                    img: img,
-                    quantity: 1
-                };
-                const existing = cartData.find(p => p.name === product.name);
-                if (existing) existing.quantity++;
-                else cartData.push(product);
-                updateCart();
-            });
-        });
-
-        function updateCart() {
-            cartItemsContainer.innerHTML = '';
-            let total = 0;
-            cartData.forEach((item, index) => {
-                total += item.price * item.quantity;
-                const div = document.createElement('div');
-                div.classList.add('cart-item');
-                div.innerHTML = `
-        <img src="${item.img}" alt="${item.name}">
-        <div class="cart-item-details">
-            <h4>${item.name}</h4>
-            <p>$${item.price.toLocaleString('es-AR')} ARS</p>
-            <div class="quantity-controls">
-                <button class="decrease" data-index="${index}">-</button>
-                <span>${item.quantity}</span>
-                <button class="increase" data-index="${index}">+</button>
-            </div>
-        </div>
-        <span class="cart-item-remove" data-index="${index}"><i class="fas fa-trash"></i></span>
-        `;
-                cartItemsContainer.appendChild(div);
-            });
-
-            cartCount.textContent = cartData.reduce((sum, p) => sum + p.quantity, 0);
-            document.getElementById('cart-total').textContent = '$' + total.toLocaleString('es-AR') + ' ARS';
-
-            // Controles cantidad
-            document.querySelectorAll('.increase').forEach(btn => btn.onclick = () => {
-                cartData[btn.dataset.index].quantity++;
-                updateCart();
-            });
-            document.querySelectorAll('.decrease').forEach(btn => btn.onclick = () => {
-                if (cartData[btn.dataset.index].quantity > 1) cartData[btn.dataset.index].quantity--;
-                else cartData.splice(btn.dataset.index, 1);
-                updateCart();
-            });
-            document.querySelectorAll('.cart-item-remove').forEach(btn => btn.onclick = () => {
-                cartData.splice(btn.dataset.index, 1);
-                updateCart();
-            });
-        }
-    </script>
+    <script src="index.js"></script>
 </body>
 
 </html>
