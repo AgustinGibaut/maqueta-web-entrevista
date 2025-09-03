@@ -11,57 +11,69 @@
 </head>
 
 <body>
-    <nav>
-        <div class="logo">Style <strong>Vault</strong></div>
-        <ul>
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="#">Mujer</a></li>
-        </ul>
-        <div class="nav-icons">
-            <i class="fas fa-search"></i>
-            <i class="fas fa-shopping-cart" id="cart-icon">
-                <span class="cart-count" id="cart-count">0</span>
-            </i>
-        </div>
-    </nav>
+
+    <!-- Cortina de carga -->
+    <div class="curtain"></div>
 
     <section class="products-section" id="products">
+        <!-- Botón volver al inicio -->
+        <a href="#top" class="back-btn"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+
+        <!-- Header -->
         <div class="section-header">
             <h2>Productos Destacados</h2>
             <p>Seleccionamos lo mejor para ti. Moda urbana y casual que combina con tu estilo de vida.</p>
         </div>
-        <div class="product-grid">
 
+        <!-- Grid de productos -->
+        <div class="product-grid">
             <div class="product-card" data-name="Camisa Casual" data-price="5000">
-                <img src="img/remera-main.png" alt="Camisa Casual">
-                <h3>Camisa Casual</h3>
-                <p>Perfecta para un look relajado y moderno.</p>
-                <a href="#" class="btn add-to-cart">Agregar al Carrito</a>
+                <div class="product-image">
+                    <img src="img/remera-main.png" alt="Camisa Casual">
+                </div>
+                <div class="product-info">
+                    <h3>Camisa Casual</h3>
+                    <p>Perfecta para un look relajado y moderno.</p>
+                    <a href="#" class="btn add-to-cart">Agregar al Carrito</a>
+                </div>
             </div>
+
             <div class="product-card" data-name="Chaqueta Urbana" data-price="12000">
-                <img src="img/remera.png" alt="Chaqueta Urbana">
-                <h3>Chaqueta Urbana</h3>
-                <p>Ideal para días frescos y estilo contemporáneo.</p>
-                <a href="#" class="btn add-to-cart">Agregar al Carrito</a>
+                <div class="product-image">
+                    <img src="img/remera.png" alt="Chaqueta Urbana">
+                </div>
+                <div class="product-info">
+                    <h3>Chaqueta Urbana</h3>
+                    <p>Ideal para días frescos y estilo contemporáneo.</p>
+                    <a href="#" class="btn add-to-cart">Agregar al Carrito</a>
+                </div>
             </div>
+
             <div class="product-card" data-name="Zapatos Deportivos" data-price="9000">
-                <img src="img/remera.png" alt="Zapatos Deportivos">
-                <h3>Zapatos Deportivos</h3>
-                <p>Comodidad y estilo para tu día a día.</p>
-                <a href="#" class="btn add-to-cart">Agregar al Carrito</a>
+                <div class="product-image">
+                    <img src="img/remera.png" alt="Zapatos Deportivos">
+                </div>
+                <div class="product-info">
+                    <h3>Zapatos Deportivos</h3>
+                    <p>Comodidad y estilo para tu día a día.</p>
+                    <a href="#" class="btn add-to-cart">Agregar al Carrito</a>
+                </div>
             </div>
+
             <div class="product-card" data-name="Pantalón Casual" data-price="7000">
-                <img src="img/remera.png" alt="Pantalón Casual">
-                <h3>Pantalón Casual</h3>
-                <p>Versátil y cómodo para cualquier ocasión.</p>
-                <a href="#" class="btn add-to-cart">Agregar al Carrito</a>
+                <div class="product-image">
+                    <img src="img/remera.png" alt="Pantalón Casual">
+                </div>
+                <div class="product-info">
+                    <h3>Pantalón Casual</h3>
+                    <p>Versátil y cómodo para cualquier ocasión.</p>
+                    <a href="#" class="btn add-to-cart">Agregar al Carrito</a>
+                </div>
             </div>
         </div>
     </section>
 
-
-
-    <script src="index.js"></script>
+    <script src="productos.js"></script>
 </body>
 
 </html>

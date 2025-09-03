@@ -51,7 +51,15 @@
     </section>
 
 
-    <script src="index.js" defer></script>
+    <script>
+        // Cortina de carga
+        window.addEventListener('load', () => {
+            const curtain = document.querySelector('.curtain');
+            setTimeout(() => {
+                curtain.style.display = 'none';
+            }, 2000); // coincide con la duración de la animación
+        });
+    </script>
 </body>
 
 </html>
