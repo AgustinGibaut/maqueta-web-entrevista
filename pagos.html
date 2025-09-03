@@ -6,24 +6,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Métodos de Pago</title>
     <link rel="stylesheet" href="pagos.css">
+    <link rel="icon" href="img/logo-etiqueta-html.png">
 </head>
 
 <body>
+    <!-- Bolsos decorativos -->
+    <img src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png" alt="Bolso compras" class="bolso bolso-izq">
+    <img src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png" alt="Bolso compras" class="bolso bolso-der">
 
-    <article class="pagos-section">
-        <h1>Contamos con gran variedad de métodos de <strong>Pagos</strong>.</h1>
-        <li><a href="index.html">volver al inicio</a></li>
+    <!-- Redes sociales -->
+    <div class="social-icons">
+        <a href="https://www.instagram.com" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+        </a>
+        <a href="https://www.facebook.com" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
+        </a>
+    </div>
 
-        <div class="pagos">
-            <img src="pagos/mercado-pago.png" alt="Mercado Pago">
-            <img src="pagos/Naranja.png" alt="Naranja X">
-            <img src="pagos/uala.png" alt="Uala">
-            <img src="pagos/AstroPay.png" alt="AstroPay">
-            <img src="pagos/Galicia.png" alt="Banco Galicia">
+    <!-- Sección principal -->
+    <section class="pagos-section">
+        <div class="pagos-texto">
+            <h1>
+                <span class="titulo-destacado">Variedades</span><br> en <strong>métodos de pago</strong>
+            </h1>
+            <p>
+                En nuestra tienda online, tu comodidad y seguridad son prioridad. Te ofrecemos múltiples formas de pago para que elijas la que mejor se adapte a tu estilo de compra, siempre con respaldo y protección de datos.
+            </p>
+            <a href="index.html" class="btn-volver"><span class="flecha">←</span> Volver al inicio</a>
         </div>
-    </article>
 
+        <!-- Carrusel -->
+        <div class="pagos-carrusel">
+            <div class="carrusel">
+                <div class="slide"><img src="pagos/mercado-pago.png" alt="Mercado Pago"></div>
+                <div class="slide"><img src="pagos/Naranja.png" alt="Naranja X"></div>
+                <div class="slide"><img src="pagos/uala.png" alt="Ualá"></div>
+                <div class="slide"><img src="pagos/AstroPay.png" alt="AstroPay"></div>
+                <div class="slide"><img src="pagos/Galicia.png" alt="Banco Galicia"></div>
+            </div>
+        </div>
+    </section>
 
 </body>
+
+<script src="carrusel.js"></script>
 
 </html>

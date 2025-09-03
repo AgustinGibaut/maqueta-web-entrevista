@@ -1,92 +1,367 @@
-/* SECCIÓN DE MÉTODOS DE PAGO */
+/* ===== Reset ===== */
 
-.pagos-section {
-    padding: 80px 5%;
-    position: relative;
-    background: radial-gradient(circle at top left, #e0f7e9, #ffffff 70%);
-    overflow: hidden;
-    min-height: 500px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 60px;
-    animation: fadeInSection 1s ease forwards;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.pagos-section h1 {
-    width: 100%;
-    text-align: center;
+body {
     font-family: 'Inter', sans-serif;
-    font-size: 2rem;
-    color: #111;
-    margin-bottom: 40px;
-}
-
-.pagos-section h1 strong {
-    color: #00c853;
-}
-
-.pagos-section .pagos {
+    background: radial-gradient(circle at top left, #e0f7e9, #ffffff 70%);
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 60px;
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: #222;
     position: relative;
 }
 
-.pagos-section .pagos img {
-    max-width: 180px;
-    width: 100%;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    cursor: pointer;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    animation: float 6s ease-in-out infinite;
+
+/* ===== Efectos laterales ===== */
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    width: 180px;
+    height: 180px;
+    background: rgba(0, 200, 83, 0.15);
+    border-radius: 50%;
+    z-index: 0;
+    animation: float 6s ease-in-out infinite alternate;
 }
 
-.pagos-section .pagos img:hover {
-    transform: translateY(-10px) scale(1.05);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+body::before {
+    top: 60px;
+    left: -70px;
 }
 
-
-/* ANIMACIÓN FLOTANTE */
+body::after {
+    bottom: 80px;
+    right: -90px;
+    animation-delay: 3s;
+}
 
 @keyframes float {
-    0%,
+    0% {
+        transform: translateY(0) translateX(0) scale(1);
+    }
+    50% {
+        transform: translateY(-15px) translateX(10px) scale(1.05);
+    }
+    100% {
+        transform: translateY(0) translateX(0) scale(1);
+    }
+}
+
+
+/* ===== Sección Pagos ===== */
+
+.pagos-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    max-width: 1100px;
+    padding: 50px;
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pagos-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+}
+
+
+/* ===== Texto ===== */
+
+.pagos-texto {
+    flex: 1 1 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    order: 1;
+    animation: fadeInLeft 1s ease forwards;
+    color: #222;
+}
+
+.pagos-texto h1 {
+    font-size: 2.6rem;
+    line-height: 1.3;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: #111;
+    text-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.06);
+    animation: titleFadeUp 1s ease forwards;
+}
+
+.pagos-texto .titulo-destacado {
+    display: inline-block;
+    font-size: 2.4rem;
+    font-weight: 900;
+    max-width: 90%;
+    line-height: 1.2;
+    letter-spacing: -0.6px;
+    background: linear-gradient(90deg, #00c853, #a5ff6f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+}
+
+.pagos-texto .titulo-destacado::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0%;
+    height: 5px;
+    background: linear-gradient(90deg, rgba(0, 200, 83, 0.8), rgba(165, 255, 111, 0.8));
+    transition: width 0.5s ease;
+    border-radius: 3px;
+}
+
+.pagos-texto .titulo-destacado:hover::after {
+    width: 100%;
+}
+
+.pagos-texto p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #444;
+    max-width: 450px;
+}
+
+
+/* ===== Botón Volver ===== */
+
+.btn-volver {
+    align-self: flex-start;
+    background: linear-gradient(90deg, #00c853 0%, #a5ff6f 100%);
+    color: #fff;
+    padding: 12px 28px;
+    border-radius: 35px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.btn-volver:hover {
+    animation: bounceStrong 0.7s;
+}
+
+.flecha {
+    font-size: 1.2rem;
+}
+
+@keyframes bounceStrong {
+    0% {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(-10px);
+    }
+    50% {
+        transform: translateY(0);
+    }
+    75% {
+        transform: translateY(-5px);
+    }
     100% {
         transform: translateY(0);
     }
+}
+
+
+/* ===== Carrusel ===== */
+
+.pagos-carrusel {
+    flex: 1 1 55%;
+    max-width: 680px;
+    overflow: hidden;
+    border-radius: 16px;
+    background: transparent;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    order: 2;
+    animation: fadeInRight 1s ease forwards;
+}
+
+.pagos-carrusel:hover {
+    transform: scale(1.02);
+}
+
+.carrusel {
+    display: flex;
+    transition: transform 0.6s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.slide img {
+    max-width: 220px;
+    height: auto;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border-radius: 12px;
+}
+
+.slide img:hover {
+    transform: scale(1.12);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
+
+/* ===== Bolsos decorativos ===== */
+
+.bolso {
+    position: fixed;
+    width: 70px;
+    height: auto;
+    opacity: 0.95;
+    z-index: 1;
+    animation: flotarDiagonal 5s ease-in-out infinite alternate;
+}
+
+.bolso-izq {
+    top: -10px;
+    left: -10px;
+}
+
+.bolso-der {
+    bottom: -10px;
+    right: -10px;
+    transform: scaleX(-1);
+}
+
+@keyframes flotarDiagonal {
+    0% {
+        transform: translate(0, 0);
+    }
     50% {
-        transform: translateY(-15px);
+        transform: translate(12px, -10px);
+    }
+    100% {
+        transform: translate(0, 0);
     }
 }
 
 
-/* RESPONSIVE */
+/* ===== Redes sociales ===== */
+
+.social-icons {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    gap: 12px;
+    z-index: 15;
+}
+
+.social-icons a {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.social-icons a:hover {
+    transform: scale(1.2);
+    background: #00c853;
+}
+
+.social-icons img {
+    width: 20px;
+    height: 20px;
+}
+
+
+/* ===== Animaciones ===== */
+
+@keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes titleFadeUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ===== Responsive ===== */
 
 @media (max-width: 900px) {
     .pagos-section {
-        padding: 60px 5%;
+        flex-direction: column;
+        text-align: center;
+        gap: 35px;
+        padding: 35px;
     }
-    .pagos-section .pagos {
-        gap: 40px;
+    .pagos-texto,
+    .pagos-carrusel {
+        flex: 1 1 100%;
+        order: unset;
     }
-    .pagos-section .pagos img {
-        max-width: 140px;
+    .pagos-texto h1 {
+        font-size: 2.2rem;
     }
-}
-
-@media (max-width: 500px) {
-    .pagos-section h1 {
-        font-size: 1.5rem;
+    .pagos-texto .titulo-destacado {
+        font-size: 2rem;
     }
-    .pagos-section .pagos {
-        gap: 30px;
+    .pagos-texto p {
+        font-size: 1rem;
+        max-width: 100%;
+        margin: 0 auto;
     }
-    .pagos-section .pagos img {
-        max-width: 120px;
+    .btn-volver {
+        padding: 10px 24px;
+        font-size: 0.95rem;
     }
 }
