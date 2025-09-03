@@ -73,7 +73,116 @@
         </div>
     </section>
 
-    <script src="productos.js"></script>
+    <!-- Carrito -->
+    <section class="cart-section" id="cart">
+        <div class="cart-header">
+            <h2><i class="fas fa-shopping-cart"></i> Tu Carrito</h2>
+            <button class="close-cart"><i class="fas fa-times"></i></button>
+        </div>
+
+        <div class="cart-items">
+            <!-- Los productos se insertan dinámicamente aquí -->
+        </div>
+
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-price">$0</span>
+            </div>
+            <button class="btn checkout-btn">Finalizar Compra</button>
+        </div>
+    </section>
+
+    <!-- Botón flotante para abrir el carrito -->
+    <button class="floating-cart-btn">
+    <i class="fas fa-shopping-cart"></i>
+    <span class="cart-count">0</span>
+</button>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const cartSection = document.querySelector(".cart-section");
+            const floatingCartBtn = document.querySelector(".floating-cart-btn");
+            const closeCartBtn = document.querySelector(".close-cart");
+            const cartItemsContainer = document.querySelector(".cart-items");
+            const cartTotalPrice = document.getElementById("cart-total-price");
+            const cartCount = document.querySelector(".cart-count");
+            const addToCartButtons = document.querySelectorAll(".add-to-cart");
+
+            let cart = [];
+
+            // Abrir carrito
+            floatingCartBtn.addEventListener("click", () => {
+                cartSection.classList.add("active");
+            });
+
+            // Cerrar carrito
+            closeCartBtn.addEventListener("click", () => {
+                cartSection.classList.remove("active");
+            });
+
+            // Agregar producto
+            addToCartButtons.forEach(btn => {
+                btn.addEventListener("click", e => {
+                    e.preventDefault();
+                    const productCard = btn.closest(".product-card");
+                    const name = productCard.dataset.name;
+                    const price = parseFloat(productCard.dataset.price);
+                    const imgSrc = productCard.querySelector("img").src;
+
+                    const existing = cart.find(item => item.name === name);
+                    if (existing) {
+                        existing.quantity++;
+                    } else {
+                        cart.push({
+                            name,
+                            price,
+                            imgSrc,
+                            quantity: 1
+                        });
+                    }
+                    updateCart();
+                });
+            });
+
+            // Actualizar carrito
+            function updateCart() {
+                cartItemsContainer.innerHTML = "";
+                let total = 0;
+
+                cart.forEach((item, index) => {
+                    total += item.price * item.quantity;
+
+                    const cartItem = document.createElement("div");
+                    cartItem.classList.add("cart-item");
+                    cartItem.innerHTML = `
+                <img src="${item.imgSrc}" alt="${item.name}">
+                <div class="cart-item-info">
+                    <h4>${item.name}</h4>
+                    <p>$${item.price} x ${item.quantity}</p>
+                </div>
+                <div class="cart-item-actions">
+                    <button class="remove-item" data-index="${index}"><i class="fas fa-trash"></i></button>
+                </div>
+            `;
+                    cartItemsContainer.appendChild(cartItem);
+                });
+
+                cartTotalPrice.textContent = `$${total}`;
+                cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+                // Eliminar producto
+                document.querySelectorAll(".remove-item").forEach(btn => {
+                    btn.addEventListener("click", () => {
+                        const index = btn.dataset.index;
+                        cart.splice(index, 1);
+                        updateCart();
+                    });
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
