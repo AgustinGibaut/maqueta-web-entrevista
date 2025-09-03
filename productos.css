@@ -32,6 +32,8 @@ a {
     background: linear-gradient(90deg, #00c853, #00e676);
     z-index: 9999;
     animation: curtainDrop 2s forwards;
+    pointer-events: none;
+    /* <--- Ahora no bloquea los botones */
 }
 
 @keyframes curtainDrop {
@@ -211,6 +213,8 @@ a {
     transition: all 0.4s ease;
     position: relative;
     animation: floatBtn 3s ease-in-out infinite;
+    cursor: pointer;
+    /* <--- Para que siempre se pueda clickear */
 }
 
 .btn.add-to-cart:hover {
